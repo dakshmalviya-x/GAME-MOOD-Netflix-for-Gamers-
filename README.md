@@ -26,9 +26,8 @@ Users can:
 
 ---
 
-# 🚀 Demo
-
-> [DEMO](game-mood-netflix-for-gamers.vercel.app)
+### 🚀 Live Demo
+Check out the live project here: [https://game-mood-netflix-for-gamers.vercel.app/](https://game-mood-netflix-for-gamers.vercel.app/)
 
 ---
 
