@@ -28,7 +28,7 @@ Users can:
 
 # 🚀 Demo
 
-> game-mood-netflix-for-gamers.vercel.app
+> [DEMO](game-mood-netflix-for-gamers.vercel.app)
 
 ---
 
