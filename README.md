@@ -28,7 +28,7 @@ Users can:
 
 # 🚀 Demo
 
-> Coming Soon
+> game-mood-netflix-for-gamers.vercel.app
 
 ---
 
