@@ -1,0 +1,10 @@
+[
+  {
+    "id": "a3dd75662d816363",
+    "username": "playerone",
+    "salt": "766c32b77b765d8ec46a1da99f7afb1f",
+    "hash": "670e2de3107803cc47fd77adc1612b6ce00e9003fcbeac8680cf556418864407a81660695a91b119f870fec1bb07642f3e9ad41c2258a23eaf18b0d8c4b2d469",
+    "isPremium": false,
+    "createdAt": "2026-06-20T14:48:06.653Z"
+  }
+]
