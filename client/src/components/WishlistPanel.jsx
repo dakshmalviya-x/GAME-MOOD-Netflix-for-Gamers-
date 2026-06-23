@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { apiUrl } from '../api';
 import GameCard from './GameCard';
 import { Heart, Lock, Loader, HeartCrack, ChevronRight } from 'lucide-react';
 
@@ -13,7 +14,7 @@ export default function WishlistPanel({ wishlist, setWishlist, onWishlistToggle,
       setLoading(true);
       setError(null);
       try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL || ''}/api/wishlist`, {
+        const response = await fetch(apiUrl('/api/wishlist'), {
           headers: {
             'Authorization': `Bearer ${token}`
           }

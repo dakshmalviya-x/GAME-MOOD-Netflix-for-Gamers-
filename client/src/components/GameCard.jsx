@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Heart, Star, ExternalLink, Lock, Sparkles, AlertCircle, ShoppingCart } from 'lucide-react';
+import { apiUrl } from '../api';
 
 export default function GameCard({ game, isWishlist, onWishlistToggle, token, isPremium, onUpgradeRequired }) {
   const [deals, setDeals] = useState([]);
@@ -30,7 +31,7 @@ export default function GameCard({ game, isWishlist, onWishlistToggle, token, is
     setDealsError(null);
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_API_URL || ''}/api/deals?steamAppId=${game.steamAppId}&title=${encodeURIComponent(game.title)}`,
+        apiUrl(`/api/deals?steamAppId=${game.steamAppId}&title=${encodeURIComponent(game.title)}`),
         {
           headers: {
             'Authorization': `Bearer ${token}`

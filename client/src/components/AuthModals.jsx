@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { apiUrl } from '../api';
 import { Shield, Lock, User, Sparkles, X } from 'lucide-react';
 
 export default function AuthModals({ isOpen, onClose, onAuthSuccess }) {
@@ -18,7 +19,7 @@ export default function AuthModals({ isOpen, onClose, onAuthSuccess }) {
     const endpoint = isLoginMode ? 'login' : 'register';
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL || ''}/api/auth/${endpoint}`, {
+      const response = await fetch(apiUrl(`/api/auth/${endpoint}`), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

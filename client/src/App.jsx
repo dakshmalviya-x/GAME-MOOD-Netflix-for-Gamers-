@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { apiUrl } from './api';
 import Navbar from './components/Navbar';
 import TrendingDashboard from './components/TrendingDashboard';
 import ExploreSection from './components/ExploreSection';
@@ -50,7 +51,7 @@ export default function App() {
 
   const fetchWishlist = async () => {
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL || ''}/api/wishlist`, {
+      const response = await fetch(apiUrl('/api/wishlist'), {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -105,7 +106,7 @@ export default function App() {
     try {
       if (isWishlisted) {
         // Remove from wishlist
-        const response = await fetch(`${import.meta.env.VITE_API_URL || ''}/api/wishlist/${game.id}`, {
+        const response = await fetch(apiUrl(`/api/wishlist/${game.id}`), {
           method: 'DELETE',
           headers: {
             'Authorization': `Bearer ${token}`
@@ -120,7 +121,7 @@ export default function App() {
         }
       } else {
         // Add to wishlist
-        const response = await fetch(`${import.meta.env.VITE_API_URL || ''}/api/wishlist`, {
+        const response = await fetch(apiUrl('/api/wishlist'), {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

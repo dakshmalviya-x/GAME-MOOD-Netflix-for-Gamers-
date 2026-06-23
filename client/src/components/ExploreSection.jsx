@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { apiUrl } from '../api';
 import GameCard from './GameCard';
 import { Search, Compass, Loader, Frown } from 'lucide-react';
 
@@ -24,7 +25,7 @@ export default function ExploreSection({ wishlist, onWishlistToggle, token, isPr
     setLoading(true);
     setError(null);
     try {
-      let url = `${import.meta.env.VITE_API_URL || ''}/api/games/explore`;
+      let url = apiUrl('/api/games/explore');
       const params = [];
       if (search) params.push(`q=${encodeURIComponent(search)}`);
       if (genre) params.push(`genre=${encodeURIComponent(genre)}`);

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { apiUrl } from '../api';
 import GameCard from './GameCard';
 import { Flame, Sparkles, ChevronRight, AlertCircle, Loader } from 'lucide-react';
 
@@ -12,7 +13,7 @@ export default function TrendingDashboard({ onStartQuiz, wishlist, onWishlistTog
       setLoading(true);
       setError(null);
       try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL || ''}/api/games/trending`);
+        const response = await fetch(apiUrl('/api/games/trending'));
         if (!response.ok) {
           throw new Error('Failed to load trending games from server.');
         }

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { apiUrl } from '../api';
 import GameCard from './GameCard';
 import { Sparkles, ArrowLeft, RefreshCw, Zap, Clock, Users, Smile, HelpCircle, Loader } from 'lucide-react';
 
@@ -42,7 +43,7 @@ export default function QuizContainer({ wishlist, onWishlistToggle, token, isPre
     setStep(5); // step 5 represents results loading/view
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL || ''}/api/games/recommend`, {
+      const response = await fetch(apiUrl('/api/games/recommend'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
