@@ -13,7 +13,7 @@ export default function WishlistPanel({ wishlist, setWishlist, onWishlistToggle,
       setLoading(true);
       setError(null);
       try {
-        const response = await fetch('/api/wishlist', {
+        const response = await fetch(`${import.meta.env.VITE_API_URL || ''}/api/wishlist`, {
           headers: {
             'Authorization': `Bearer ${token}`
           }

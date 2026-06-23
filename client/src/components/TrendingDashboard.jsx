@@ -12,7 +12,7 @@ export default function TrendingDashboard({ onStartQuiz, wishlist, onWishlistTog
       setLoading(true);
       setError(null);
       try {
-        const response = await fetch('/api/games/trending');
+        const response = await fetch(`${import.meta.env.VITE_API_URL || ''}/api/games/trending`);
         if (!response.ok) {
           throw new Error('Failed to load trending games from server.');
         }

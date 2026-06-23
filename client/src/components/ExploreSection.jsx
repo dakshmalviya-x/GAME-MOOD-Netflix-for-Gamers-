@@ -24,7 +24,7 @@ export default function ExploreSection({ wishlist, onWishlistToggle, token, isPr
     setLoading(true);
     setError(null);
     try {
-      let url = '/api/games/explore';
+      let url = `${import.meta.env.VITE_API_URL || ''}/api/games/explore`;
       const params = [];
       if (search) params.push(`q=${encodeURIComponent(search)}`);
       if (genre) params.push(`genre=${encodeURIComponent(genre)}`);

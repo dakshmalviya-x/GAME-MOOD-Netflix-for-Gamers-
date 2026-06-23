@@ -18,7 +18,7 @@ export default function AuthModals({ isOpen, onClose, onAuthSuccess }) {
     const endpoint = isLoginMode ? 'login' : 'register';
 
     try {
-      const response = await fetch(`/api/auth/${endpoint}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL || ''}/api/auth/${endpoint}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

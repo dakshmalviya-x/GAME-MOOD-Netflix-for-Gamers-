@@ -42,7 +42,7 @@ export default function QuizContainer({ wishlist, onWishlistToggle, token, isPre
     setStep(5); // step 5 represents results loading/view
 
     try {
-      const response = await fetch('/api/games/recommend', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL || ''}/api/games/recommend`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

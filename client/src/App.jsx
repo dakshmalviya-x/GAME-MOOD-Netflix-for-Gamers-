@@ -50,7 +50,7 @@ export default function App() {
 
   const fetchWishlist = async () => {
     try {
-      const response = await fetch('/api/wishlist', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL || ''}/api/wishlist`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -105,7 +105,7 @@ export default function App() {
     try {
       if (isWishlisted) {
         // Remove from wishlist
-        const response = await fetch(`/api/wishlist/${game.id}`, {
+        const response = await fetch(`${import.meta.env.VITE_API_URL || ''}/api/wishlist/${game.id}`, {
           method: 'DELETE',
           headers: {
             'Authorization': `Bearer ${token}`
@@ -120,7 +120,7 @@ export default function App() {
         }
       } else {
         // Add to wishlist
-        const response = await fetch('/api/wishlist', {
+        const response = await fetch(`${import.meta.env.VITE_API_URL || ''}/api/wishlist`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
