@@ -1,12 +1,15 @@
 import express from 'express';
 import fs from 'fs/promises';
 import path from 'path';
+import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
 
 dotenv.config();
 
 const router = express.Router();
-const gamesFilePath = path.join(process.cwd(), 'data', 'games.json');
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const gamesFilePath = path.join(__dirname, '..', 'data', 'games.json');
 
 // Helper to load internal games list
 async function loadGames() {
@@ -16,11 +19,14 @@ async function loadGames() {
 
 // Maps seed game format to include dynamic image paths
 function formatLocalGame(game) {
+  const fallbackThumbnail = '/images/game-placeholder.svg';
+  const steamThumbnail = game.steamAppId
+    ? `https://cdn.cloudflare.steamstatic.com/steam/apps/${game.steamAppId}/header.jpg`
+    : fallbackThumbnail;
+
   return {
     ...game,
-    thumbnail: game.steamAppId
-      ? `https://shared.fastly.steamstatic.com/store_images_shared/app/${game.steamAppId}/header.jpg`
-      : `https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800&auto=format&fit=crop` // general high-quality fallback
+    thumbnail: steamThumbnail || fallbackThumbnail
   };
 }
 

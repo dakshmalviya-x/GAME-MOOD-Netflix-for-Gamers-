@@ -1,11 +1,14 @@
 import express from 'express';
 import fs from 'fs/promises';
 import path from 'path';
+import { fileURLToPath } from 'url';
 import authMiddleware from '../middleware/auth.js';
 
 const router = express.Router();
-const wishlistFilePath = path.join(process.cwd(), 'data', 'wishlists.json');
-const gamesFilePath = path.join(process.cwd(), 'data', 'games.json');
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const wishlistFilePath = path.join(__dirname, '..', 'data', 'wishlists.json');
+const gamesFilePath = path.join(__dirname, '..', 'data', 'games.json');
 
 // Helper to load wishlists
 async function loadWishlists() {
@@ -52,8 +55,8 @@ router.get('/', authMiddleware, async (req, res) => {
           ...savedGame,
           ...matchedLocal,
           thumbnail: matchedLocal.steamAppId
-            ? `https://shared.fastly.steamstatic.com/store_images_shared/app/${matchedLocal.steamAppId}/header.jpg`
-            : savedGame.thumbnail
+            ? `https://cdn.cloudflare.steamstatic.com/steam/apps/${matchedLocal.steamAppId}/header.jpg`
+            : savedGame.thumbnail || '/images/game-placeholder.svg'
         };
       }
       return savedGame; // Return custom/RAWG game metadata directly

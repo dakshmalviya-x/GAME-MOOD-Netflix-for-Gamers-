@@ -1,9 +1,12 @@
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
 
 console.log('🧪 Starting backend verification tests...');
 
-const gamesPath = path.join(process.cwd(), 'data', 'games.json');
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const gamesPath = path.join(__dirname, 'data', 'games.json');
 
 try {
   // Test 1: Verify data exists and is valid JSON

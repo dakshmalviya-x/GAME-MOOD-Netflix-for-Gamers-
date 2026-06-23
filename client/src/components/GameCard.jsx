@@ -6,6 +6,13 @@ export default function GameCard({ game, isWishlist, onWishlistToggle, token, is
   const [showDeals, setShowDeals] = useState(false);
   const [loadingDeals, setLoadingDeals] = useState(false);
   const [dealsError, setDealsError] = useState(null);
+  const fallbackThumbnail = '/images/game-placeholder.svg';
+
+  const handleImageError = (event) => {
+    if (event.currentTarget.dataset.fallbackApplied === 'true') return;
+    event.currentTarget.dataset.fallbackApplied = 'true';
+    event.currentTarget.src = fallbackThumbnail;
+  };
 
   const handleFetchDeals = async () => {
     if (!token) return;
@@ -53,9 +60,10 @@ export default function GameCard({ game, isWishlist, onWishlistToggle, token, is
       {/* Game Image Banner */}
       <div style={{ position: 'relative', width: '100%', height: '160px', overflow: 'hidden' }}>
         <img
-          src={game.thumbnail}
+          src={game.thumbnail || fallbackThumbnail}
           alt={game.title}
           style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s ease' }}
+          onError={handleImageError}
           onMouseOver={e => e.currentTarget.style.transform = 'scale(1.08)'}
           onMouseOut={e => e.currentTarget.style.transform = 'scale(1)'}
         />
