@@ -35,8 +35,16 @@ export default function ExploreSection({ wishlist, onWishlistToggle, token, isPr
       }
 
       const response = await fetch(url);
+      const contentType = response.headers.get('content-type') || '';
+
       if (!response.ok) {
-        throw new Error('Failed to search games catalog');
+        const text = await response.text();
+        throw new Error(`Request failed (${response.status}) ${contentType}: ${text.slice(0, 120)}`);
+      }
+
+      if (!contentType.includes('application/json')) {
+        const text = await response.text();
+        throw new Error(`Expected JSON but received ${contentType || 'unknown'}: ${text.slice(0, 120)}`);
       }
 
       const data = await response.json();
