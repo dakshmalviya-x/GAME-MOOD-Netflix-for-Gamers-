@@ -23,7 +23,7 @@ export default function GameCard({ game, isWishlist, onWishlistToggle, token, is
     setDealsError(null);
     try {
       const response = await fetch(
-        `http://localhost:5000/api/deals?steamAppId=${game.steamAppId}&title=${encodeURIComponent(game.title)}`,
+        `/api/deals?steamAppId=${game.steamAppId}&title=${encodeURIComponent(game.title)}`,
         {
           headers: {
             'Authorization': `Bearer ${token}`

@@ -30,7 +30,7 @@ export default function PaymentModal({ isOpen, onClose, token, onPaymentSuccess 
       await new Promise(r => setTimeout(r, 600));
 
       // Make backend API request to upgrade profile
-      const response = await fetch('http://localhost:5000/api/auth/upgrade', {
+      const response = await fetch('/api/auth/upgrade', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

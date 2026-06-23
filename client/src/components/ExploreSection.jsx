@@ -24,7 +24,7 @@ export default function ExploreSection({ wishlist, onWishlistToggle, token, isPr
     setLoading(true);
     setError(null);
     try {
-      let url = 'http://localhost:5000/api/games/explore';
+      let url = '/api/games/explore';
       const params = [];
       if (search) params.push(`q=${encodeURIComponent(search)}`);
       if (genre) params.push(`genre=${encodeURIComponent(genre)}`);
@@ -42,7 +42,11 @@ export default function ExploreSection({ wishlist, onWishlistToggle, token, isPr
       setGames(data);
     } catch (err) {
       console.error(err);
-      setError(err.message);
+      const isNetworkError = err.message === 'Failed to fetch' || err.name === 'TypeError';
+      setError(isNetworkError 
+        ? 'Cannot reach the GameMood server. Make sure the backend is running (npm start in /server).' 
+        : err.message
+      );
     } finally {
       setLoading(false);
     }

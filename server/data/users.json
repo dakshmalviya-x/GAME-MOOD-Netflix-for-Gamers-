@@ -6,5 +6,13 @@
     "hash": "670e2de3107803cc47fd77adc1612b6ce00e9003fcbeac8680cf556418864407a81660695a91b119f870fec1bb07642f3e9ad41c2258a23eaf18b0d8c4b2d469",
     "isPremium": false,
     "createdAt": "2026-06-20T14:48:06.653Z"
+  },
+  {
+    "id": "fe8ca87f035fc19a",
+    "username": "masterpro",
+    "salt": "06bd236ba6b102cb8efb2a93965e7c8c",
+    "hash": "6b0d280fd6bf4dd40c535a3e01db5809f951fd147cbf098e86799f4a18601b2f7501fe3cbf60883fd050bbbe67e83da5f660bed9df8fb8bdec61f9edbc79c2bc",
+    "isPremium": false,
+    "createdAt": "2026-06-23T15:18:07.444Z"
   }
 ]

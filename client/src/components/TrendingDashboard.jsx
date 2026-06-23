@@ -12,7 +12,7 @@ export default function TrendingDashboard({ onStartQuiz, wishlist, onWishlistTog
       setLoading(true);
       setError(null);
       try {
-        const response = await fetch('http://localhost:5000/api/games/trending');
+        const response = await fetch('/api/games/trending');
         if (!response.ok) {
           throw new Error('Failed to load trending games from server.');
         }
@@ -20,7 +20,11 @@ export default function TrendingDashboard({ onStartQuiz, wishlist, onWishlistTog
         setGames(data);
       } catch (err) {
         console.error(err);
-        setError(err.message);
+        const isNetworkError = err.message === 'Failed to fetch' || err.name === 'TypeError';
+        setError(isNetworkError 
+          ? 'Cannot reach the GameMood server. Please make sure the backend is running on port 5000.' 
+          : err.message
+        );
       } finally {
         setLoading(false);
       }
@@ -111,7 +115,10 @@ export default function TrendingDashboard({ onStartQuiz, wishlist, onWishlistTog
           <div className="glass-panel" style={{ padding: '2rem', textAlign: 'center', border: '1px solid rgba(239, 68, 68, 0.2)' }}>
             <AlertCircle size={32} color="#ef4444" style={{ marginBottom: '0.75rem' }} />
             <h3 style={{ fontSize: '1.2rem', marginBottom: '0.5rem' }}>Failed to Load Catalog</h3>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>{error}</p>
+            <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', marginBottom: '1rem' }}>{error}</p>
+            <button onClick={() => window.location.reload()} className="btn btn-secondary" style={{ fontSize: '0.85rem', padding: '0.5rem 1rem' }}>
+              🔄 Retry
+            </button>
           </div>
         ) : (
           <div className="grid-cards">

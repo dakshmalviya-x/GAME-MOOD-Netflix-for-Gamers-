@@ -13,7 +13,7 @@ export default function WishlistPanel({ wishlist, setWishlist, onWishlistToggle,
       setLoading(true);
       setError(null);
       try {
-        const response = await fetch('http://localhost:5000/api/wishlist', {
+        const response = await fetch('/api/wishlist', {
           headers: {
             'Authorization': `Bearer ${token}`
           }
